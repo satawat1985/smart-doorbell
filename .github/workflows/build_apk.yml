@@ -26,10 +26,12 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Generate Android Scaffolding
-        run: flutter create . --platforms=android --org com.doorbell.app
+      - name: Prepare Assets & Android Scaffold
+        run: |
+          mkdir -p assets/sounds
+          flutter create . --project-name smart_doorbell --platforms=android --org com.doorbell.app
 
-      - name: Auto-patch code
+      - name: Auto-patch Dart code
         run: |
           sed -i 's/Colors.emeraldColor/const Color(0xFF059669)/g' lib/main.dart || true
 
